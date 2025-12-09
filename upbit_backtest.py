@@ -1,42 +1,46 @@
-# ==================
+# ====================
 # 업비트 백테스트 코드
-# ==================
+# Upbit backtest code
+# 2025/10/19
+# ====================
 
 import pyupbit
 import pandas as pd
 
 
-# 기본 설정
+#============ 기본 설정(基本設定) ============
 ticker = "KRW-XRP"      # 리플 원화 마켓
 interval = "minute5"    # 5분봉
 start_money = 1000000   # 초기 자본 100만원
 
 
-# 캔들 갯수 계산
+# ======== 캔들 갯수 계산(ローソクの数計算) ==========
 candles_per_day = int(60 / 5 * 24)
 days = 7
 need_count = candles_per_day * days + 10  # 여유분
 
+# ======== データ読み込み ========
 print("데이터 가져오는 중...")
 
 
-# 데이터 가져오기
+# ======================= 데이터 가져오기 ======================
 df = pyupbit.get_ohlcv(ticker, interval=interval, count=need_count)
 
 if df is None:
     print("데이터를 가져오지 못했습니다.")
     quit()
 
+# NA, NaN除去
 df = df.dropna()
 
 
-# 이동평균선 계산
+# ======== 이동평균선 계산(移動平均線=SMA 計算) ===========
 df["ma6"] = df["close"].rolling(window=6).mean()
 df["ma12"] = df["close"].rolling(window=12).mean()
 df["ma24"] = df["close"].rolling(window=24).mean()
 df["ma48"] = df["close"].rolling(window=48).mean()
 
-# 백테스트 변수들
+# ========= 백테스트 변수들(backtest用の変数) ===========
 holding = False         # 현재 보유 여부
 buy_price = 0.0         # 매수 가격
 balance = start_money   # 현재 자본
@@ -45,7 +49,7 @@ trade_list = []         # 거래 기록 저장용
 prev_ma6 = None
 prev_ma12 = None
 
-# ===== 메인 루프 =====
+# ========= 메인 루프(メインループ) ========
 for i in range(len(df)):
     row = df.iloc[i]
 
@@ -67,13 +71,13 @@ for i in range(len(df)):
     close_price = row["close"]
     time_index = df.index[i]
 
-    # ----- 골든크로스 → 매수 -----
+    # 골든크로스 → 매수
     if (not holding) and (prev_ma6 < prev_ma12) and (ma6 > ma12):
         holding = True
         buy_price = close_price
         print("[매수]", time_index, "가격:", close_price)
 
-    # ----- 데드크로스 → 매도 -----
+    # 데드크로스 → 매도
     elif holding and (prev_ma6 > prev_ma12) and (ma6 < ma12):
         holding = False
         sell_price = close_price
@@ -111,7 +115,7 @@ if holding:
 
     print("[최종 청산]", last_time, "가격:", last_close, "수익률:", profit_rate * 100, "%")
 
-# 결과 출력
+# ======================= 결과 출력(結果出力) =========================
 print()
 print("====== 백테스트 결과 ======")
 print("초기 자본:", start_money, "원")
@@ -129,3 +133,4 @@ if len(trade_list) > 0:
     print("평균 거래당 수익률:", avg_profit_rate, "%")
 else:
     print("매매가 한 번도 발생하지 않았습니다.")
+
