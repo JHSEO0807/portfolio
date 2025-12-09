@@ -1,5 +1,5 @@
 # portfolio
-Portfolio (Python, Data Analysis)
+Portfolio (Python, Data Analysis)<br><br><br>
 <br>
 <br>
 このリポジトリは、私がパイソンを勉強しながら作って整理したポートフォリオです。 <br>
