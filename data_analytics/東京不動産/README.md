@@ -20,7 +20,11 @@ Python（Jupyter Lab）で前処理を行い、Tableauで可視化していま�
 - Jupyter Notebook
 - Tableau Public (可視化用)</br></br>
 
-### 可視化・分析結果
+## 可視化・分析結果
+
+### 区別・市別 平均㎡単価の比較
+<img width="574" height="763" alt="image" src="https://github.com/user-attachments/assets/f182704a-b495-457a-91a8-35c82ac5c7bd" />
+
 23区と市部を分けて平均㎡単価を比較したところ、
 区部では全体的に高い価格水準が見られ、</br>
 特に新宿区・世田谷区などでは㎡単価が高い傾向が確認できました。
@@ -30,8 +34,10 @@ Python（Jupyter Lab）で前処理を行い、Tableauで可視化していま�
 区部との価格差が明確に表れています。
 
 → 行政区分による価格水準の違いが大きいことが分かります。
+</br></br>
 
 ### 年度別 平均価格トレンド
+<img width="1322" height="763" alt="image" src="https://github.com/user-attachments/assets/b069e9f6-38aa-48fb-bbf7-7b573c803cc1" />
 
 年度別に平均価格の推移を確認すると、
 一時的な上下はあるものの、
@@ -40,8 +46,11 @@ Python（Jupyter Lab）で前処理を行い、Tableauで可視化していま�
 このことから、
 東京都の不動産価格は短期的な変動はあっても、
 中長期では安定的に右肩上がりしていると考えられます。
+</br></br>
 
 ### 駅からの徒歩時間と㎡単価の関係
+<img width="1126" height="763" alt="image" src="https://github.com/user-attachments/assets/fdc6764b-3796-43da-8675-873e9ab1945a" />
+<img width="1333" height="763" alt="image" src="https://github.com/user-attachments/assets/f1fce9a7-883b-462a-bbb6-8f6b1cdaf807" />
 
 最寄駅までの徒歩時間と㎡単価の関係を散布図で確認したところ、
 駅から近い物件ほど、</br>
@@ -50,8 +59,10 @@ Python（Jupyter Lab）で前処理を行い、Tableauで可視化していま�
 </br>高価格帯の物件が減少するという傾向が確認できました。
 
 → 駅距離は価格に強く影響する要因であることが分かります。
+</br></br>
 
 ### 築年数と㎡単価の関係
+<img width="1328" height="763" alt="image" src="https://github.com/user-attachments/assets/090284bc-1a03-4ecd-a79c-9f872e2e6124" />
 
 築年数と㎡単価の関係を見ると、
 築年数が増加するにつれて㎡単価は低下する傾向が見られました。
@@ -59,6 +70,7 @@ Python（Jupyter Lab）で前処理を行い、Tableauで可視化していま�
 年式30年までは価格の分散が大きく、
 築年数だけでなく立地条件及びその他の条件などの要因も
 価格に影響していることが分かります。
+</br></br>
 
 ### まとめ・考察
 本分析から、以下の点が確認できました。
